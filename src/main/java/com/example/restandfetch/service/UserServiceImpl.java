@@ -6,7 +6,6 @@ import com.example.restandfetch.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -16,28 +15,23 @@ public class UserServiceImpl implements UserService{
     @Autowired
     UserDao userDao;
 
-
     @Autowired
     ApplicationContext applicationContext;
-
 
     @Override
     public void add(User user) {
         userDao.save(user);
     }
 
-
     @Override
     public List<User> listUsers() {
         return userDao.findAll();
     }
 
-
     @Override
     public void delete(Long id) {
         userDao.deleteById(id);
     }
-
 
     @Override
     public User getUser(Long id) {

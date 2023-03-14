@@ -1,23 +1,12 @@
-$(document).ready(function() {
-        $('#addForm').on("submit",function(e){
-            e.preventDefault();
-            // console.log("Loading...");
-            addNewUser();
-        });
+$(document).ready(function () {
+    $('#addForm').on("submit", function (e) {
+        e.preventDefault();
+        addNewUser();
+    });
 });
 
 async function addNewUser() {
-    // let newFirstName = document.getElementById('newFirstName').value;
-    // let newLastName = document.getElementById('newLastName').value;
-    // let newAge = document.getElementById('newAge').value;
-    // let newEmail = document.getElementById('newEmail').value;
-    // let newPassword = document.getElementById('newPassword').value;
     let newRoles = $('#newRoles').val();
-    // alert(newFirstName+" "+newPassword+" "+newRoles)
-
-
-    // let roles = $('#roles'+buttonNumber).val();
-
 
     function addToUserRoles(r) {
         let howManyRolesAdd = [];
@@ -27,8 +16,6 @@ async function addNewUser() {
         return howManyRolesAdd;
     }
 
-
-    // alert(id+" "+firstName+" "+lastName+" "+password+" "+roles);
     let user = {
         firstName: document.getElementById('newFirstName').value,
         lastName: document.getElementById('newLastName').value,
@@ -38,7 +25,7 @@ async function addNewUser() {
         roles: addToUserRoles(newRoles)
     };
 
-    // alert(user);
+
     await transformIntoJson(user);
     await mainPage();
     $('#myTabs a[href="#user_table"]').tab('show');
@@ -46,7 +33,7 @@ async function addNewUser() {
 }
 
 async function transformIntoJson(u) {
-     await fetch('/api/users', {
+    await fetch('/api/users', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'

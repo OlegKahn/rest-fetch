@@ -11,10 +11,3 @@ input + label{
     color: gray;
     padding: 0;
 }
-
-input:required:invalid,
-input:focus:invalid {
-    /* insert your own styles for invalid form input */
-    text-decoration-style: wavy;
-    -moz-box-shadow: none;
-}

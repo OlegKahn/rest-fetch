@@ -3,7 +3,6 @@ package com.example.restandfetch.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.util.Assert;
-
 import javax.persistence.*;
 @Embeddable
 public class Role implements GrantedAuthority {
@@ -33,7 +32,6 @@ public class Role implements GrantedAuthority {
     public String getAuthority() {
         return "ROLE_" + role;
     }
-
 
     public boolean equals(Object obj) {
         if (this == obj) {
