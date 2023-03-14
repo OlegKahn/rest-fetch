@@ -1,0 +1,20 @@
+.parent {
+    text-align: center;
+    padding: 25px 25px 25px;
+    font-weight: bold;
+}
+input + label{
+    margin-top: 15px;
+}
+
+.btn-link {
+    color: gray;
+    padding: 0;
+}
+
+input:required:invalid,
+input:focus:invalid {
+    /* insert your own styles for invalid form input */
+    text-decoration-style: wavy;
+    -moz-box-shadow: none;
+}
