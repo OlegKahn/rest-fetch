@@ -7,8 +7,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+
 
 @Entity
 @Table(name = "users")
@@ -18,10 +18,8 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @Pattern(regexp="[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$",message="length must be 3")
-@Email(message = "Wrong e-mail")
-
-@Column(name = "username", unique = true)
+    @Email(message = "Wrong e-mail")
+    @Column(name = "username", unique = true)
     private String username;
 
     @Column(name = "password")
@@ -39,21 +37,21 @@ public class User implements UserDetails {
     @Column(name = "age")
     private byte age;
 
-
-@ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-@CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
-@AttributeOverrides({
-        @AttributeOverride(name = "role", column = @Column(name = "role"))
-})
-    Set<Role> roles = new HashSet<>();
-
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.DETACH,
+            CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private List<Role> roles;
 
 
     public User() {
     }
 
 
-    public User(Long id ,String firstName, String lastName, byte age, Set<Role> roles) {
+    public User(Long id, String firstName, String lastName, byte age, List<Role> roles) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -110,11 +108,11 @@ public class User implements UserDetails {
         this.isActive = isActive;
     }
 
-    public Set<Role> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 
@@ -136,7 +134,6 @@ public class User implements UserDetails {
     @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
         return roles;
     }
 

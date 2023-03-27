@@ -15,8 +15,6 @@ public class UserServiceImpl implements UserService{
     @Autowired
     UserDao userDao;
 
-    @Autowired
-    ApplicationContext applicationContext;
 
     @Override
     public void add(User user) {

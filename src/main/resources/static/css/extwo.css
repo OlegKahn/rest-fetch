@@ -3,7 +3,8 @@
     padding: 25px 25px 25px;
     font-weight: bold;
 }
-input + label{
+
+input + label {
     margin-top: 15px;
 }
 
