@@ -10,7 +10,7 @@ $(document).ready(function () {
 });
 
 
-// ***********************Создает таблицу с юзерами**************************************
+// ***********************Creates a table with users**************************************
 async function mainPage() {
     $("tbody#my_table").empty();
     let users = await fetch('/api/users')
@@ -37,7 +37,7 @@ async function mainPage() {
 }
 
 
-// ***********************Открывает модал edit form**************************************
+// ***********************Opens the edit form modal**************************************
 async function modalEdF(x) {
     $("#largeModal").find('.modal-title').text('Edit user');
     $('#largeModal').modal('show');
@@ -55,7 +55,7 @@ async function modalEdF(x) {
 }
 
 
-// ***********************Открывает модал delete form**************************************
+// ***********************Opens the delete form modal**************************************
 async function modalDelF(x) {
     $("#largeModal").find('.modal-title').text('Delete user');
     $('#largeModal').modal('show');
@@ -72,7 +72,7 @@ async function modalDelF(x) {
 }
 
 
-// ***********************Отдает роли как текст**************************************
+// ***********************Gives roles as text**************************************
 function someRoles(x) {
     let y = "";
     for (let i of x) {
@@ -82,7 +82,7 @@ function someRoles(x) {
 }
 
 
-// ***********************Строит форму**************************************
+// ***********************Builds a form**************************************
 function formBuilder(editUser, isDisabled) {
     $("div#thereForm").append(
         "        <label for='id'>Id</label>\n" +
@@ -108,7 +108,7 @@ function formBuilder(editUser, isDisabled) {
 }
 
 
-// ***********************Строит для формы опции ролей**************************************
+// ***********************Builds for the role options form**************************************
 function optionRoles() {
     let roles = "";
     roles += "<option value='USER'>USER</option>";
@@ -117,7 +117,7 @@ function optionRoles() {
     return roles;
 }
 
-// ***********************Проверка на disable формы**************************************
+// ***********************Checking for disabled forms**************************************
 function isDisabledForm(is) {
     let isDis = "";
     if (is === true) {
@@ -127,7 +127,7 @@ function isDisabledForm(is) {
 }
 
 
-// ***********************Кнопка Edit**************************************
+// ***********************Edit button**************************************
 function editButton() {
 // <button type="button" className="btn btn-primary">Save changes</button>
     $("div#formButton").append('<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>\n' +
@@ -135,7 +135,7 @@ function editButton() {
 }
 
 
-// ***********************Эффект кнопки Edit**************************************
+// ***********************Edit button effect**************************************
 async function effectEditButton() {
 
     let roles = $('#roles').val();
@@ -174,7 +174,7 @@ async function effectEditButton() {
 }
 
 
-// ***********************Кнопка Delete**************************************
+// ***********************Delete button**************************************
 function deleteButton() {
 // <button type="button" className="btn btn-primary">Save changes</button>
     $("div#formButton").append('<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>\n' +
@@ -182,7 +182,7 @@ function deleteButton() {
 }
 
 
-// ***********************Эффект кнопки Delete**************************************
+// ***********************Delete button effect**************************************
 async function effectDeleteButton() {
     let id = document.getElementById('id').value;
     await fetch('/api/users/' + id, {method: 'DELETE'});
@@ -192,7 +192,7 @@ async function effectDeleteButton() {
 }
 
 
-// ***********************Поле password**************************************
+// ***********************Password field**************************************
 function thereIsPasswordField(isField) {
     if (!isField) {
         return "        <label for='password'>Password</label>\n" +
